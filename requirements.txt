@@ -1,4 +1,6 @@
 streamlit
 youtube-dl
 youtube_transcript_api
+langchain
+openai
 pytube
