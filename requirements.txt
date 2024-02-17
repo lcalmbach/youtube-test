@@ -2,5 +2,6 @@ streamlit
 youtube-dl
 youtube_transcript_api
 langchain
+langchain-community==0.0.19
 openai
 pytube
