@@ -6,5 +6,6 @@ langchain
 langchain-community==0.0.19
 openai
 pytube
+pydub
 yt_dlp
 
