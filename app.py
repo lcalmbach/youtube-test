@@ -38,6 +38,15 @@ def delete_all_files_in_folder(folder_path):
             shutil.rmtree(file_path)
 
 
+def copy_files():
+    delete_all_files_in_folder(SAVE_DIR)
+    if st.session_state["url"] in list(url_list.keys()):
+        shutil.copyfile(
+            os.path.join(MP3_DIR, url_list[st.session_state["url"]]),
+            os.path.join(SAVE_DIR, url_list[st.session_state["url"]]),
+        )
+
+
 if "url" not in st.session_state:
     st.session_state["url"] = random.choice(list(url_list.keys()))
     st.session_state["text"] = None
@@ -55,11 +64,7 @@ if st.button("Transkribiere Video"):
     with st.spinner(f'Transcribing "{yt.title}"...'):
         # make sure the file is copied to the save directory folder because in the cloud, downloading files form youtube does not
         # seem to work. this is a workaround for demo purpose, the productive version only works on local installations
-        delete_all_files_in_folder(SAVE_DIR)
-        shutil.copyfile(
-            os.path.join(MP3_DIR, url_list[st.session_state["url"]]),
-            os.path.join(SAVE_DIR, url_list[st.session_state["url"]]),
-        )
+        copy_files()
         loader = GenericLoader(
             YoutubeAudioLoader([url], SAVE_DIR), OpenAIWhisperParser()
         )
